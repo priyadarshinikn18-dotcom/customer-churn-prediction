@@ -1,466 +1,356 @@
-#  AI-Powered Customer Churn Intelligence System
+# 📊 AI-Powered Customer Churn Intelligence System
 
-> **An end-to-end machine learning solution for predicting customer churn, analyzing customer risk, and generating explainable retention insights.**
+<p align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)](https://www.python.org/)
-[![XGBoost](https://img.shields.io/badge/Model-XGBoost-orange)](https://xgboost.readthedocs.io/)
-[![Streamlit](https://img.shields.io/badge/App-Streamlit-red?logo=streamlit)](https://streamlit.io/)
-[![SHAP](https://img.shields.io/badge/XAI-SHAP-purple)](https://shap.readthedocs.io/)
-[![Scikit--learn](https://img.shields.io/badge/ML-Scikit--learn-F7931E?logo=scikit-learn)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-Educational-lightgrey)](#license)
+### Predict • Analyze • Explain • Retain
 
----
+An end-to-end Machine Learning system for customer churn prediction, risk scoring, explainable AI, and retention intelligence.
 
-##  Overview
+**Python · XGBoost · Scikit-learn · SHAP · Streamlit**
 
-Customer churn is one of the most important business problems for subscription-based companies.
-
-This project develops an **AI-powered customer churn intelligence system** that analyzes customer information and predicts the probability that a customer will leave a service.
-
-Instead of producing only a binary prediction, the system provides:
-
-* 🎯 Churn probability
-* 📊 Customer risk score
-* 🚦 Low / Medium / High risk classification
-* 🧠 Explainable AI using SHAP
-* 💡 Retention recommendations
-* 📈 Interactive business analytics
-* 🤖 Machine-learning model performance metrics
-
-The application is built as a complete **Data Science → Machine Learning → Explainable AI → Deployment** pipeline.
+</p>
 
 ---
 
-#  Problem Statement
+## 🚀 Overview
 
-Customer acquisition is often more expensive than customer retention.
+Customer churn is a major business challenge for subscription-based companies.
 
-Businesses need to identify customers who are likely to churn **before they leave**, allowing customer-success teams to take preventive action.
+This project develops an **AI-Powered Customer Churn Intelligence System** that analyzes customer demographics, services, contracts, billing information, and customer behavior to predict the probability that a customer will churn.
 
-### The problem
+The system provides:
 
-> **Can machine learning identify customers who are at high risk of churn based on their demographic, service, contract, billing, and usage characteristics?**
+- 🎯 Churn probability
+- 🚦 Low / Medium / High risk classification
+- 📊 Customer risk score
+- 🧠 Explainable AI using SHAP
+- 💡 Retention recommendations
+- 📈 Business analytics
+- 🤖 Machine learning model comparison
+- 🌐 Interactive Streamlit dashboard
+---
 
-### Proposed solution
+## 🎯 Problem Statement
 
-Build a machine-learning system that:
+Customer retention is an important business objective because acquiring a new customer can be more expensive than retaining an existing one.
+
+The objective of this project is to build a machine-learning system that can:
+
+- Identify customers who are likely to churn
+- Estimate the probability of churn
+- Classify customers according to their risk level
+- Explain why a customer is considered at risk
+- Provide actionable retention recommendations
+
+### Business Question
+
+> **Can machine learning identify customers who are likely to churn based on their demographic, service, contract, billing, and behavioral characteristics?**
+
+---
+
+## 💡 Proposed Solution
+
+This project implements a complete **Data Science → Machine Learning → Explainable AI → Deployment** pipeline.
 
 ```text
-Customer Data
-      ↓
+Customer Dataset
+       │
+       ▼
+Data Inspection
+       │
+       ▼
 Data Cleaning
-      ↓
+       │
+       ▼
 Exploratory Data Analysis
-      ↓
+       │
+       ▼
 Feature Engineering
-      ↓
-Machine Learning
-      ↓
-Churn Probability
-      ↓
-Risk Classification
-      ↓
-Explainable AI
-      ↓
-Retention Recommendation
-```
+       │
+       ▼
+Train / Test Split
+       │
+       ▼
+Model Training
+       │
+       ├──────────────┐
+       │              │
+       ▼              ▼
+Logistic        Random Forest
+Regression
+       │              │
+       └───────┬──────┘
+               │
+               ▼
+            XGBoost
+               │
+               ▼
+       Model Evaluation
+               │
+               ▼
+      Final XGBoost Model
+               │
+        ┌──────┴──────┐
+        ▼             ▼
+      SHAP        Prediction
+ Explainability
+        │             │
+        └──────┬──────┘
+               ▼
+      Streamlit Dashboard
+               │
+        ┌──────┴──────┐
+        ▼             ▼
+    Risk Score    Retention
+                  Recommendation
+                  ---
 
----
-
-#  Key Features
-
-###  Churn Prediction
-
-Predicts the probability that an individual customer will churn.
-
-Example:
-
-```text
-Churn Probability: 34.83%
-Risk Score:        35 / 100
-Risk Level:        LOW
-```
-
-###  Risk Classification
-
-Customers are classified into three risk categories:
-
-| Probability | Risk      |
-| ----------: | --------- |
-|     `< 40%` | 🟢 Low    |
-| `40–69.99%` | 🟡 Medium |
-|     `≥ 70%` | 🔴 High   |
-
-###  Explainable AI
-
-SHAP is used to identify which features influenced an individual prediction.
-
-This makes the model more transparent than a simple black-box prediction.
-
-###  Retention Recommendations
-
-The application generates risk-based recommendations such as:
-
-* Customer outreach
-* Retention offers
-* Contract incentives
-* Technical support
-* Loyalty benefits
-
-###  Analytics Dashboard
-
-The Streamlit application provides:
-
-* Total customers
-* Churned customers
-* Retained customers
-* Overall churn rate
-* Churn distribution
-* Churn by contract
-* Model performance
-
----
-
-#  System Architecture
-
-```text
-                    ┌─────────────────────┐
-                    │   Customer Dataset  │
-                    └──────────┬──────────┘
-                               ↓
-                    ┌─────────────────────┐
-                    │   Data Cleaning     │
-                    │     Pandas          │
-                    └──────────┬──────────┘
-                               ↓
-                    ┌─────────────────────┐
-                    │       EDA           │
-                    │ Matplotlib/Seaborn  │
-                    └──────────┬──────────┘
-                               ↓
-                    ┌─────────────────────┐
-                    │ Feature Engineering │
-                    │   One-Hot Encoding  │
-                    └──────────┬──────────┘
-                               ↓
-                 ┌─────────────┴─────────────┐
-                 ↓                           ↓
-        Logistic Regression           Random Forest
-                 │                           │
-                 └─────────────┬─────────────┘
-                               ↓
-                           XGBoost
-                               ↓
-                     Model Evaluation
-                               ↓
-                    ┌──────────┴──────────┐
-                    ↓                     ↓
-              SHAP Explainability   Risk Prediction
-                    │                     │
-                    └──────────┬──────────┘
-                               ↓
-                    Streamlit Dashboard
-                               ↓
-                    Retention Insights
-```
-
----
-
-#  Dataset
+## 📊 Dataset
 
 The project uses the **IBM Telco Customer Churn dataset**.
 
-### Dataset statistics
+### Dataset Statistics
 
-| Property            |     Value |
-| ------------------- | --------: |
-| Customers           | **7,043** |
-| Original columns    |    **21** |
-| Predictive features |    **19** |
-| Target              | **Churn** |
-| Churned customers   | **1,869** |
-| Retained customers  | **5,174** |
+| Property | Value |
+|---|---:|
+| Total Customers | **7,043** |
+| Original Columns | **21** |
+| Predictive Features | **19** |
+| Churned Customers | **1,869** |
+| Retained Customers | **5,174** |
+| Churn Rate | **26.54%** |
 
-### Target distribution
+### Target Distribution
 
-| Class    | Customers | Percentage |
-| -------- | --------: | ---------: |
-| No Churn |     5,174 |     73.46% |
-| Churn    |     1,869 |     26.54% |
+| Churn Status | Customers | Percentage |
+|---|---:|---:|
+| No Churn | 5,174 | 73.46% |
+| Churn | 1,869 | 26.54% |
 
-The target is therefore imbalanced, which is why the project evaluates models using more than accuracy alone.
+The dataset contains demographic, service, contract, billing, and customer-behavior information.
 
 ---
 
-#  Data Preprocessing
+## 🧹 Data Preprocessing
 
-The preprocessing pipeline performs:
+The preprocessing pipeline performs the following steps:
 
 1. Dataset inspection
-2. Data-type analysis
+2. Data-type validation
 3. Missing-value analysis
 4. `TotalCharges` conversion from text to numeric
-5. Invalid/blank charge handling
-6. Removal of `customerID`
+5. Invalid and blank value handling
+6. Removal of the `customerID` identifier
 7. Categorical feature encoding
 8. Target encoding
-9. Stratified train/test split
+9. Feature preparation
+10. Stratified train/test splitting
 
-### Special data-cleaning case
-
-`TotalCharges` was initially stored as a string.
-
-Blank values were detected and converted to numeric values, with the corresponding new-customer values handled as `0`.
-
-The cleaned dataset contains:
+### Train/Test Split
 
 ```text
-7,043 customers
-0 missing values
-```
+80% Training
+20% Testing
 
 ---
 
-#  Exploratory Data Analysis
-
-The project analyzes customer behavior through:
-
-* Churn distribution
-* Customer tenure
-* Monthly charges
-* Total charges
-* Contract type
-* Internet service
-* Payment method
-* Technical support
-* Billing behavior
-* Customer service features
-
-The analysis helps identify patterns associated with customer churn before model training.
-
 ---
 
-#  Machine Learning
+# 📈 Model Performance
 
-Three classification models were evaluated.
+Three machine-learning classification algorithms were evaluated:
 
-### 1. Logistic Regression
-
-Used as the baseline model because it provides a simple and interpretable benchmark.
-
-### 2. Random Forest
-
-Used to model nonlinear relationships and improve detection of churn cases.
-
-### 3. XGBoost
-
-Used as the final gradient-boosting model because of its strong performance on structured/tabular data.
-
----
-#  Model Evaluation
+1. Logistic Regression
+2. Random Forest
+3. XGBoost
 
 The models were evaluated using:
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* ROC-AUC
-* Confusion Matrix
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+- Confusion Matrix
 
-### Results
+---
 
-| Model               |   Accuracy |  Precision |     Recall |         F1 |    ROC-AUC |
-| ------------------- | ---------: | ---------: | ---------: | ---------: | ---------: |
-| Logistic Regression |       ~80% |       ~65% |       ~56% |       ~60% |          — |
-| Random Forest       |     77.50% |     56.61% |     65.24% |     60.62% |     82.76% |
-| **XGBoost**         | **75.23%** | **52.24%** | **78.07%** | **62.59%** | **84.01%** |
+## 🤖 Model Comparison
 
-##  Selected Model: XGBoost
+| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| Logistic Regression | ~80% | ~65% | ~56% | ~60% | — |
+| Random Forest | 77.50% | 56.61% | 65.24% | 60.62% | 82.76% |
+| **XGBoost** | **75.23%** | **52.24%** | **78.07%** | **62.59%** | **84.01%** |
 
-The final model achieved:
+---
 
-```text
-Accuracy   : 75.23%
-Precision  : 52.24%
-Recall     : 78.07%
-F1 Score   : 62.59%
-ROC-AUC    : 84.01%
-```
+## 🏆 Final Model — XGBoost
+
+The final model selected for the application is **XGBoost Classifier**.
+
+### Final Performance
+
+| Metric | Score |
+|---|---:|
+| Accuracy | **75.23%** |
+| Precision | **52.24%** |
+| Recall | **78.07%** |
+| F1 Score | **62.59%** |
+| ROC-AUC | **84.01%** |
 
 ### Why XGBoost?
 
-The objective is not simply to maximize accuracy.
+Accuracy was not treated as the only selection criterion because the dataset contains a significant class imbalance.
 
-In churn prediction, failing to identify a customer who is actually going to churn can be costly.
+The project places additional importance on identifying customers who actually churn.
 
-Therefore, the project gives significant importance to:
+XGBoost achieved:
 
-* Recall
-* F1-score
-* ROC-AUC
+- 🥇 **78.07% Recall**
+- 🥇 **62.59% F1 Score**
+- 🥇 **84.01% ROC-AUC**
 
-XGBoost achieved the strongest overall performance on these metrics.
+This makes XGBoost the most suitable final model for the current churn-prediction objective.
+
+> **Important:** XGBoost does not have the highest accuracy in this comparison. Logistic Regression achieved approximately 80% accuracy. XGBoost was selected because it provided stronger churn-focused performance across recall, F1-score, and ROC-AUC.
 
 ---
 
-#  Explainable AI — SHAP
+## 🎯 Confusion Matrix — XGBoost
 
-A machine-learning model should not only provide a prediction; users should also have an understanding of **why** the prediction was made.
-
-This project uses **SHAP (SHapley Additive exPlanations)** to analyze feature contributions.
-
-The application provides customer-level explanations such as:
+The XGBoost model produced the following confusion matrix on the test set:
 
 ```text
-Prediction
-    ↓
-SHAP Analysis
-    ↓
-Top Influencing Features
-    ↓
-Positive / Negative Impact
-```
+                 Predicted
+               No Churn   Churn
 
-Example features analyzed include:
-
-* Contract type
-* Tenure
-* Monthly charges
-* Total charges
-* Payment method
-* Internet service
-* Billing preferences
-* Technical support
-* Streaming services
-
-The model determines their influence rather than relying on manually assigned importance.
+Actual No         768      267
+Actual Churn       82      292
 
 ---
 
-#  Application
+# 🧠 Explainable AI
 
-The project includes an interactive **Streamlit dashboard**.
+Machine-learning predictions can be difficult to interpret.
 
-## Dashboard
+To improve transparency, this project uses **SHAP (SHapley Additive exPlanations)** to explain the factors influencing model predictions.
+
+## 🔍 SHAP Workflow
+
+```text
+Customer Information
+        │
+        ▼
+   XGBoost Model
+        │
+        ▼
+Churn Probability
+        │
+        ▼
+   SHAP Analysis
+        │
+        ▼
+Feature Contributions
+        │
+        ▼
+Prediction Explanation
+
+---
+
+# 🖥️ Streamlit Application
+
+The trained XGBoost model is integrated into an interactive **Streamlit dashboard**.
+
+The application provides a simple interface for both business analytics and individual customer prediction.
+
+## 📊 Dashboard Features
+
+### Business Analytics
 
 The dashboard provides:
 
-```text
-┌──────────────────────────────────────────┐
-│      CUSTOMER CHURN INTELLIGENCE         │
-├──────────┬──────────┬──────────┬─────────┤
-│ Customers│ Churned  │ Retained │ Churn % │
-├──────────┴──────────┴──────────┴─────────┤
-│                                          │
-│       Customer Analytics                 │
-│                                          │
-├──────────────────────────────────────────┤
-│       Model Performance                  │
-│                                          │
-├──────────────────────────────────────────┤
-│       Customer Prediction                │
-│                                          │
-├──────────────────────────────────────────┤
-│       SHAP Explanation                   │
-│                                          │
-└──────────────────────────────────────────┘
-```
+- Total customer count
+- Churned customer count
+- Retained customer count
+- Overall churn rate
+- Churn distribution
+- Churn analysis by contract
+
+### 🤖 Model Performance
+
+The application displays:
+
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+
+### 🔮 Customer Prediction
+
+Users can enter customer information and receive:
+
+- Churn probability
+- Risk score
+- Risk classification
+- Retention recommendations
+
+### 🧠 Explainable AI
+
+The application provides SHAP-based explanations showing the most influential factors behind an individual prediction.
 
 ---
 
-#  Prediction Workflow
-
-A user enters customer information such as:
+# 🔄 Prediction Workflow
 
 ```text
-Tenure
-Monthly Charges
-Total Charges
-Contract
-Internet Service
-Payment Method
-Paperless Billing
-Technical Support
-```
-
-The application then performs:
-
-```text
-User Input
-    ↓
+Customer Input
+      │
+      ▼
 Feature Encoding
-    ↓
+      │
+      ▼
 Feature Alignment
-    ↓
-XGBoost
-    ↓
-Probability
-    ↓
+      │
+      ▼
+XGBoost Model
+      │
+      ▼
+Churn Probability
+      │
+      ▼
 Risk Score
-    ↓
+      │
+      ▼
 Risk Classification
-    ↓
+      │
+      ▼
 SHAP Explanation
-    ↓
+      │
+      ▼
 Retention Recommendation
-```
 
 ---
 
-#  Retention Strategy
+# 🛠️ Technology Stack
 
-The application translates predictions into actionable suggestions.
-
-###  High Risk
-
-Potential actions:
-
-* Proactive customer contact
-* Personalized retention offer
-* Long-term contract incentives
-* Technical support
-* Billing/service review
-
-###  Medium Risk
-
-Potential actions:
-
-* Monitor customer activity
-* Targeted promotional offers
-* Improve engagement
-* Contract upgrade incentives
-
-###  Low Risk
-
-Potential actions:
-
-* Maintain service quality
-* Continue engagement
-* Loyalty benefits
-* Monitor future behavior
-
-> These recommendations are decision-support suggestions and should be validated against real business requirements before production use.
+| Category | Technology |
+|---|---|
+| Programming Language | Python 3.12 |
+| Data Processing | Pandas, NumPy |
+| Data Visualization | Matplotlib, Seaborn |
+| Machine Learning | Scikit-learn |
+| Gradient Boosting | XGBoost |
+| Explainable AI | SHAP |
+| Web Application | Streamlit |
+| Model Serialization | Joblib |
+| Version Control | Git |
+| Repository | GitHub |
 
 ---
 
-#  Technology Stack
-
-| Category            | Technology          |
-| ------------------- | ------------------- |
-| Language            | Python 3.12         |
-| Data Processing     | Pandas, NumPy       |
-| Visualization       | Matplotlib, Seaborn |
-| Machine Learning    | Scikit-learn        |
-| Gradient Boosting   | XGBoost             |
-| Explainable AI      | SHAP                |
-| Web Application     | Streamlit           |
-| Model Serialization | Joblib              |
-| Version Control     | Git / GitHub        |
-
----
-
-#  Repository Structure
+# 📁 Project Structure
 
 ```text
 customer-churn-prediction/
@@ -483,245 +373,163 @@ customer-churn-prediction/
 │   └── train_model.py
 │
 ├── app.py
-├── requirements.txt
 ├── README.md
+├── requirements.txt
 └── .gitignore
-```
 
 ---
 
-#  Installation & Setup
+# ⚙️ Installation & Setup
 
-## 1. Clone the repository
+## 1. Clone the Repository
 
 ```bash
-git clone <REPOSITORY_URL>
-cd customer-churn-prediction
-```
-
-## 2. Create the virtual environment
-
-Windows:
-
-```powershell
-py -3.12 -m venv venv
-```
-
-## 3. Activate the environment
-
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-
-## 4. Install dependencies
-
-```powershell
-pip install -r requirements.txt
-```
-
-## 5. Run the application
-
-```powershell
-python -m streamlit run app.py
-```
-
-Open:
-
-```text
-http://localhost:8501
-```
+git clone https://github.com/priyadarshinikn18-dotcom/customer-churn-prediction.git
 
 ---
 
-#  Reproduce the ML Pipeline
+# 📌 Business Value
 
-The project is organized into independent stages.
+This system can help customer-success teams:
 
-### Inspect data
+- Identify customers with elevated churn risk
+- Prioritize retention efforts
+- Understand factors influencing predictions
+- Segment customers based on risk
+- Support proactive customer engagement
+- Improve data-driven retention decisions
 
-```powershell
-python src\inspect_data.py
-```
-
-### Clean data
-
-```powershell
-python src\clean_data.py
-```
-
-### Perform EDA
-
-```powershell
-python src\eda.py
-```
-
-### Prepare features
-
-```powershell
-python src\prepare_data.py
-```
-
-### Train models
-
-```powershell
-python src\train_model.py
-```
-
-### Generate SHAP analysis
-
-```powershell
-python src\explain_model.py
-```
+The application is designed as a **decision-support system**, not an autonomous business decision-maker.
 
 ---
 
-#  Screenshots
+# ⚠️ Limitations
 
-Add screenshots of the application here.
-
-Recommended screenshots:
-
-### Dashboard
-
-```text
-docs/dashboard.png
-```
-
-### Prediction
-
-```text
-docs/prediction.png
-```
-
-### SHAP Explanation
-
-```text
-docs/shap-explanation.png
-```
-
-Example Markdown:
-
-```markdown
-![Dashboard](docs/dashboard.png)
-
-![Prediction](docs/prediction.png)
-
-![SHAP Explanation](docs/shap-explanation.png)
-```
-
----
-
-#  Example Prediction
-
-Example input:
-
-```text
-Tenure:              2 months
-Monthly Charges:     95
-Total Charges:       190
-Contract:            Month-to-month
-Internet Service:    Fiber optic
-Payment Method:      Electronic check
-Paperless Billing:   Yes
-Tech Support:        No
-```
-
-Example output from the application:
-
-```text
-Churn Probability: 34.83%
-Risk Score:        35/100
-Risk Level:        LOW
-```
-
-The output is generated by the trained model and changes according to the customer input.
-
----
-
-#  Limitations
-
-This is a portfolio and educational project rather than a production banking or telecom decision system.
+This project is intended for **educational, academic, and portfolio purposes**.
 
 Current limitations include:
 
-* Historical dataset
-* Limited customer features
-* Fixed model thresholds
-* Rule-based retention recommendations
-* No real-time production data
-* No automated model retraining
-* No model-drift monitoring
-* No production-grade authentication
+- Historical customer dataset
+- Limited customer attributes
+- Fixed risk thresholds
+- Rule-based retention recommendations
+- No real-time production data
+- No automated model retraining
+- No model-drift monitoring
+- No production authentication
+- No live customer database integration
 
-The model should be validated on current business data before being used for real customer decisions.
+Before production deployment, the model should be validated using current business data and appropriate monitoring.
 
 ---
 
-#  Future Improvements
+# 🔮 Future Improvements
 
-Potential future development includes:
+Potential improvements include:
 
-* ☁️ Cloud deployment
-* 🔄 Automated model retraining
-* 📦 MLflow experiment tracking
-* 🐳 Docker deployment
-* ⚙️ CI/CD with GitHub Actions
-* 📡 Real-time churn prediction
-* 👥 Customer segmentation
-* 📈 Model drift monitoring
-* ⚖️ Fairness and bias analysis
-* 🧪 Hyperparameter optimization
-* 📊 A/B testing of retention strategies
-* 🔐 Production authentication and authorization
+### ☁️ Deployment
+
+- Cloud deployment
+- Docker containerization
+- REST API
+- Production hosting
+
+### 🔄 MLOps
+
+- MLflow experiment tracking
+- Automated model retraining
+- Model registry
+- Model monitoring
+- Data-drift detection
+- Model-drift monitoring
+
+### 📊 Advanced Analytics
+
+- Customer segmentation
+- Customer lifetime value prediction
+- Retention campaign optimization
+- Customer behavior forecasting
+
+### 🧪 Machine Learning
+
+- Hyperparameter optimization
+- Cross-validation
+- Ensemble learning
+- Threshold optimization
+- Probability calibration
+
+### 🔐 Production
+
+- Authentication
+- Authorization
+- Secure API
+- Database integration
+- Logging and monitoring
 
 ---
 
 # 🎓 Skills Demonstrated
 
-This project demonstrates practical experience in:
+## Data Science
 
-### Data Science
+- Data cleaning
+- Exploratory Data Analysis
+- Feature engineering
+- Data visualization
+- Statistical analysis
 
-* Data cleaning
-* Exploratory Data Analysis
-* Statistical analysis
-* Feature engineering
-* Data visualization
+## Machine Learning
 
-### Machine Learning
+- Binary classification
+- Imbalanced classification
+- Model comparison
+- Logistic Regression
+- Random Forest
+- XGBoost
+- Probability prediction
+- Model evaluation
 
-* Classification
-* Model comparison
-* Imbalanced-data evaluation
-* XGBoost
-* Model evaluation
+## Explainable AI
 
-### Explainable AI
+- SHAP
+- Feature contribution analysis
+- Model interpretability
 
-* SHAP
-* Feature contribution analysis
-* Model interpretability
+## Application Development
 
-### Application Development
+- Streamlit
+- Interactive dashboards
+- Customer risk scoring
+- Business recommendations
 
-* Streamlit
-* Interactive prediction interface
-* Risk scoring
-* Business recommendations
+## Software Engineering
 
-### Software Engineering
-
-* Modular Python scripts
-* Virtual environments
-* Dependency management
-* Git/GitHub
-* Reproducible workflows
+- Modular Python development
+- Virtual environments
+- Dependency management
+- Git
+- GitHub
+- Reproducible machine-learning workflows
 
 ---
 
-#  Author
+# 🏆 Project Highlights
 
-**[PRIYADARSHINI KN]**
+- **7,043** customer records analyzed
+- **3** machine-learning models evaluated
+- **84.01% ROC-AUC** achieved with XGBoost
+- **78.07% recall** for churn detection
+- SHAP-based explainable AI
+- Interactive Streamlit prediction dashboard
+- Automated customer risk scoring
+- Risk-based retention recommendations
+- Modular and reproducible ML pipeline
+
+---
+
+# 👩‍💻 Author
+
+**Priyadarshini KN**
 
 AI/ML & Data Science Student
 
@@ -729,5 +537,8 @@ AI/ML & Data Science Student
 
 ---
 
-#  License
+# 📄 License
 
+This project is intended for educational, academic, and portfolio purposes.
+
+---
